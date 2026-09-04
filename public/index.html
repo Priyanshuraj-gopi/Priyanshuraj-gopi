@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NAMASTE ITC AI</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f7fb; }
+      .container { max-width: 1100px; margin: 0 auto; }
+      .card { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+      h1, h2 { margin-top: 0; }
+      label { display: block; margin: 8px 0 4px; font-weight: 600; }
+      input, select, textarea, button { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; margin-bottom: 10px; }
+      button { background: #0047ab; color: #fff; border: none; cursor: pointer; }
+      button:hover { background: #00367f; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .hidden { display: none; }
+      .pill { display: inline-block; padding: 4px 8px; background: #eaf1ff; border-radius: 999px; margin-right: 6px; margin-bottom: 6px; }
+      @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>NAMASTE ITC AI</h1>
+      <div class="card">
+        <label for="roleSwitcher">Choose Interface</label>
+        <select id="roleSwitcher">
+          <option value="customer">Customer</option>
+          <option value="employee">Employee</option>
+        </select>
+      </div>
+
+      <section id="customerView" class="card">
+        <h2>Customer Checkout Assistant</h2>
+        <label for="customerName">Name</label>
+        <input id="customerName" placeholder="Customer name" />
+
+        <label for="hotelId">Hotel</label>
+        <input id="hotelId" value="itc-grand-bharat" />
+
+        <label for="roomNumber">Room Number</label>
+        <input id="roomNumber" placeholder="e.g. 305" />
+
+        <label for="language">Preferred Language</label>
+        <select id="language"></select>
+
+        <label><input id="voiceConsent" type="checkbox" checked /> I consent to voice feedback capture</label>
+
+        <button id="startCheckout">Start Checkout Session</button>
+
+        <label for="feedbackText">Share Feedback (text fallback)</label>
+        <textarea id="feedbackText" rows="4" placeholder="Tell us about your stay..."></textarea>
+
+        <div class="grid">
+          <button id="sendText">Send Text Feedback</button>
+          <button id="startVoice">Start Voice Recognition</button>
+        </div>
+
+        <button id="finishCheckout">Finish Checkout</button>
+        <pre id="customerLog"></pre>
+      </section>
+
+      <section id="employeeView" class="card hidden">
+        <h2>Employee Dashboard</h2>
+
+        <label for="employeeToken">Employee Access Token</label>
+        <input id="employeeToken" value="itc-employee-secure-token" />
+
+        <div class="grid">
+          <button id="refreshSummary">Refresh Feedback Summary</button>
+          <button id="connectStream">Connect Realtime Alerts</button>
+        </div>
+
+        <div id="summary"></div>
+
+        <h3>Inventory</h3>
+        <button id="loadInventory">Load Inventory</button>
+        <div id="inventoryList"></div>
+
+        <label for="transactionItem">Item ID</label>
+        <input id="transactionItem" placeholder="inv-1" />
+
+        <label for="transactionType">Transaction Type</label>
+        <select id="transactionType">
+          <option value="consume">Consume</option>
+          <option value="restock">Restock</option>
+        </select>
+
+        <label for="transactionQuantity">Quantity</label>
+        <input id="transactionQuantity" type="number" value="1" min="1" />
+
+        <button id="submitTransaction">Submit Stock Transaction</button>
+
+        <h3>Live Events</h3>
+        <pre id="employeeEvents"></pre>
+      </section>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
