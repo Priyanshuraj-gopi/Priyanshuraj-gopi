@@ -3,6 +3,7 @@
 NAMASTE ITC AI is a role-based hotel assistant prototype for ITC hotels with:
 - **Customer interface**: multilingual checkout assistant with voice input and text fallback.
 - **Employee interface**: feedback analytics plus commodities/amenities inventory operations.
+- **Branded kiosk UI**: uses the provided NAMASTE ITC AI logo and a luxury-themed interface.
 
 ## Features
 

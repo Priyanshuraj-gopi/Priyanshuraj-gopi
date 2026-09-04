@@ -1,4 +1,5 @@
-const roleSwitcher = document.getElementById('roleSwitcher');
+const customerRoleBtn = document.getElementById('customerRoleBtn');
+const employeeRoleBtn = document.getElementById('employeeRoleBtn');
 const customerView = document.getElementById('customerView');
 const employeeView = document.getElementById('employeeView');
 const customerLog = document.getElementById('customerLog');
@@ -6,19 +7,23 @@ const employeeEvents = document.getElementById('employeeEvents');
 
 let checkoutSessionId = null;
 let eventSource = null;
+let activeRole = 'customer';
 
 function logCustomer(message) {
   customerLog.textContent = `${message}\n${customerLog.textContent}`;
 }
 
-function switchRole() {
-  const role = roleSwitcher.value;
+function switchRole(role) {
+  activeRole = role;
   customerView.classList.toggle('hidden', role !== 'customer');
   employeeView.classList.toggle('hidden', role !== 'employee');
+  customerRoleBtn.classList.toggle('active', role === 'customer');
+  employeeRoleBtn.classList.toggle('active', role === 'employee');
 }
 
-roleSwitcher.addEventListener('change', switchRole);
-switchRole();
+customerRoleBtn.addEventListener('click', () => switchRole('customer'));
+employeeRoleBtn.addEventListener('click', () => switchRole('employee'));
+switchRole(activeRole);
 
 async function api(path, options = {}, role = 'customer') {
   const headers = {
